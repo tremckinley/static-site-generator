@@ -1,5 +1,5 @@
 import unittest
-from htmlnode import HTMLNode
+from htmlnode import HTMLNode, LeafNode
 
 class TestTextNode(unittest.TestCase):
     
@@ -15,6 +15,10 @@ class TestTextNode(unittest.TestCase):
     def test_repr(self):
         node = HTMLNode(tag="div", value="Hello, World!", props={"id": "main", "class": "container"})
         self.assertEqual(node.__repr__(), {'id': 'main', 'class': 'container'})
+
+    def test_leaf(self):
+        leaf = LeafNode(tag="a", value="Click Here for more", props={"href": "https://www.crooked.com"})
+        self.assertEqual(leaf, '<a href="https://www.crooked.com">Click Here for more</a>')
 
     if __name__ == "__main__":
         unittest.main()

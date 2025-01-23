@@ -15,3 +15,21 @@ class HTMLNode:
     
     def __repr__(self):
         return f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props})"
+
+
+class LeafNode(HTMLNode):
+    def __init__(self, tag, value, props):
+        super().__init__(tag, value, props)
+        if self.value == None:
+            raise ValueError("value cannot be blank")
+    
+        
+    def to_html(self):
+        if self.value == None:
+             raise ValueError("value cannot be blank")
+        elif self.tag == None:
+            return f"{self.value}"
+        else:
+            return f"<{self.tag} {self.props_to_html()}>{self.value}</{self.tag}>"
+        
+
